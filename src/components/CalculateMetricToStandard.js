@@ -1,5 +1,4 @@
-﻿
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import OutlineButton from 'react-bootstrap/Button';
@@ -77,9 +76,9 @@ function MetricToStandardPage() {
     return (
         <React.Fragment>
             <Container style={{padding: '25px'}}>
-            <h3>Conversion Units</h3>
-            <div style={{backgroundColor: 'pink', padding: '10px'}}></div>
-            <Grid>
+                <h3>Conversion Units</h3>
+                <div style={{backgroundColor: 'pink', padding: '10px'}}></div>
+                <Grid style={{padding: '10px'}}>
                     <Dropdown onSelect={onSelectFrom} key={`From-${fromValue}`}>
                         <div>From Units</div>
                         <Dropdown.Toggle variant='outline-primary' id="dropdown-basic">
@@ -116,19 +115,18 @@ function MetricToStandardPage() {
                         >
                         </Form.Control>
                         <OutlineButton variant="outline-dark" style={{marginTop: '15px'}} type='submit'>Calculate</OutlineButton>
-                    </Form>
-                    {calcValue && (
-                        <React.Fragment>
-                            <Alert>{calcValue}</Alert>
-                            <span>{toValue}</span>
-                        </React.Fragment>
-                    )} 
-                </Grid>
-                <div style={{backgroundColor: 'pink', padding: '10px'}}></div>
+                        </Form>
+                        {calcValue && (
+                            <React.Fragment>
+                                <Alert>{calcValue}</Alert>
+                                <span>{toValue}</span>
+                            </React.Fragment>
+                        )} 
+                    </Grid>
+                <div style={{backgroundColor: 'pink'}}></div>
             </Container>
         </React.Fragment>
     )
 }
 
 export default MetricToStandardPage;
-
