@@ -13,26 +13,6 @@ const Grid = styled.div`
   grid-template-rows: 1fr;
   grid-gap: 1em;
 `;
-const LeftColumn = styled.div`
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row: 1;
-`
-const RightColumn = styled.div`
-  grid-column-start: 2;
-  grid-column-end: -1;
-  grid-row: 1;
-`
-/*
-const Formula = {
-    MillimetersToCentimeters,
-    MillimetersToInches,
-    MillimetersToFeet,
-    CentimetersToMillimeters,
-    InchesToMillimeters,
-    FeetToMillimeters
-}
-*/
 
 function MetricToStandardPage() {
     
