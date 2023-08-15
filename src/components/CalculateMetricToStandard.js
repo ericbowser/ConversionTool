@@ -78,7 +78,7 @@ function MetricToStandardPage() {
         <React.Fragment>
             <Container style={{padding: '25px'}}>
                 <h3>Conversion Units</h3>
-                <div style={{backgroundColor: 'pink', padding: '10px'}}></div>
+                <div style={{backgroundColor: '#cfe2ff', padding: '10px', borderRadius: '16px'}}></div>
                 <Grid style={{padding: '10px'}}>
                     <Dropdown onSelect={onSelectFrom} key={`From-${fromValue}`}>
                         <div>From Units</div>
@@ -125,6 +125,14 @@ function MetricToStandardPage() {
                         )} 
                     </Grid>
                 <div style={{backgroundColor: 'pink'}}></div>
+            </Container>
+            <Container style={{textAlign: 'center', marginTop: '25%'}}>
+                <Alert variant='primary'>
+                    <footer>
+                        <p>Author: Hege Refsnes</p>
+                        <p><a href="mailto:hege@example.com">hege@example.com</a></p>
+                    </footer>
+                </Alert>
             </Container>
         </React.Fragment>
     )
