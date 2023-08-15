@@ -129,8 +129,7 @@ function MetricToStandardPage() {
             <Container style={{textAlign: 'center', marginTop: '25%'}}>
                 <Alert variant='primary'>
                     <footer>
-                        <p>Author: Hege Refsnes</p>
-                        <p><a href="mailto:hege@example.com">hege@example.com</a></p>
+                        <p> <span style={{color: 'grey'}}>Author:  Erb</span> <span style={{color: 'teal'}}>(Eric Ryan Bowser)</span></p>
                     </footer>
                 </Alert>
             </Container>

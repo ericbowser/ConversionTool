@@ -1,10 +1,9 @@
 import React from 'react'
-import MetricToStandardPage from "./components/CalculateMetricToStandard.js";
 
 function App() {
   return (
     <React.Fragment>
-        <MetricToStandardPage />
+       <div>Home</div>
     </React.Fragment>)
 }
 
