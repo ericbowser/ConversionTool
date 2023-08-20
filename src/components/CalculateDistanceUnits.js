@@ -1,10 +1,10 @@
 import Container from 'react-bootstrap/Container'
+import DropdownTemplate from './DropdownTemplate'
 
 function CalculateDistanceUnits () {
   return (
     <Container>
-      <a href='/'>Home</a>
-      <div>Distance</div>
+      <DropdownTemplate units='distance' />
     </Container>
   )
 }

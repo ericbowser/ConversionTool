@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import OutlineButton from 'react-bootstrap/Button'
 import styled from 'styled-components'
 import Alert from 'react-bootstrap/Alert'
 import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownTemplate from './DropdownTemplate'
+import { useLocation } from 'react-router-dom'
 
 const Grid = styled.div`
   display: grid;
@@ -14,10 +14,34 @@ const Grid = styled.div`
   grid-gap: 1em;
 `
 
-function MetricToStandardPage () {
+const dropDownUnitsLength = ['Millimeters', 'Centimeters', 'Inches', 'Feet']
+
+function DropdownTemplate ({ units = 'volume' }) {
+  const [currentUnits, setCurrentUnits] = useState(null)
   const [fromValue, setFromValue] = useState(null)
   const [toValue, setToValue] = useState(null)
   const [calcValue, setCalcValue] = useState(null)
+
+  const location = useLocation()
+  console.log(location.pathname)
+
+  if (location === '/length') {
+    if (currentUnits !== 'length') {
+      setCurrentUnits('length')
+    }
+  }
+  if (location === '/weight') {
+    if (currentUnits !== 'weigh') {
+      setCurrentUnits('weight')
+    }
+  }
+  if (location === '/distance') {
+    if (currentUnits !== 'distance') {
+      setCurrentUnits('distance')
+    }
+  }
+
+  useMemo(() => {}, [currentUnits])
 
   useEffect(() => {}, [fromValue])
 
@@ -25,27 +49,12 @@ function MetricToStandardPage () {
 
   useEffect(() => {}, [calcValue])
 
-  function decideCalculation (inputValue) {
-    let value
-    if (fromValue === 'millimeters' && toValue === 'centimeters') {
-      value = inputValue / 10
-      return value
-    } else if (fromValue === 'centimeters' && toValue === 'millimeters') {
-      value = inputValue * 10
-      return value
-    } else if (fromValue === 'millimeters' && toValue === 'inches') {
-      value = inputValue * 25.4
-      return value
-    } else if (fromValue === 'inches' && toValue === 'millimeters') {
-      value = inputValue / 25.4
-      return value
-    } else if (fromValue === 'millimeters' && toValue === 'feet') {
-      value = inputValue * 304.8
-      return value
-    } else if (fromValue === 'feet' && toValue === 'millimeters') {
-      value = inputValue / 304.8
-      return value
-    }
+  function decideCalculation (inputValue) {}
+  function onSelectFrom (fromValue) {
+    setFromValue(fromValue)
+  }
+  function onSelectTo (toValue) {
+    setToValue(toValue)
   }
 
   function calculate (event) {
@@ -58,17 +67,9 @@ function MetricToStandardPage () {
     }
   }
 
-  function onSelectFrom (fromValue) {
-    setFromValue(fromValue)
-  }
-  function onSelectTo (toValue) {
-    setToValue(toValue)
-  }
-
   return (
-    <React.Fragment>
-      <DropdownTemplate units='length' />
-      {/* <Container style={{ padding: '25px' }}>
+    <>
+      <Container style={{ padding: '25px' }}>
         <div>
           <a href='/'>Home</a>
         </div>
@@ -173,9 +174,9 @@ function MetricToStandardPage () {
             </p>
           </footer>
         </Alert>
-      </Container> */}
-    </React.Fragment>
+      </Container>
+    </>
   )
 }
 
-export default MetricToStandardPage
+export default DropdownTemplate
