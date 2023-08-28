@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import OutlineButton from 'react-bootstrap/Button'
@@ -14,56 +14,80 @@ const Grid = styled.div`
   grid-gap: 1em;
 `
 
-const dropDownUnitsLength = ['Millimeters', 'Centimeters', 'Inches', 'Feet']
-
-function DropdownTemplate ({ units = 'volume' }) {
-  const [currentUnits, setCurrentUnits] = useState(null)
-  const [fromValue, setFromValue] = useState(null)
-  const [toValue, setToValue] = useState(null)
+function DropdownTemplate ({ props }) {
+  const { units, calculate } = props
+  const [currentUnits, setCurrentUnits] = useState([])
+  const [toUnits, setToUnits] = useState(null)
+  const [fromUnits, setFromUnits] = useState(null)
   const [calcValue, setCalcValue] = useState(null)
 
   const location = useLocation()
   console.log(location.pathname)
 
-  if (location === '/length') {
-    if (currentUnits !== 'length') {
-      setCurrentUnits('length')
-    }
-  }
-  if (location === '/weight') {
-    if (currentUnits !== 'weigh') {
-      setCurrentUnits('weight')
-    }
-  }
-  if (location === '/distance') {
-    if (currentUnits !== 'distance') {
-      setCurrentUnits('distance')
-    }
-  }
+  useEffect(() => {}, [currentUnits])
 
-  useMemo(() => {}, [currentUnits])
+  useEffect(() => {
+    // if (fromUnits === null) {
+    //   setFromUnits(fromUnits)
+    // }
+  }, [fromUnits])
 
-  useEffect(() => {}, [fromValue])
+  useEffect(() => {
+    // if (toUnits === null) {
+    //   setFromUnits(toUnits)
+    // }
+  }, [toUnits])
 
-  useEffect(() => {}, [toValue])
-
-  useEffect(() => {}, [calcValue])
-
-  function decideCalculation (inputValue) {}
-  function onSelectFrom (fromValue) {
-    setFromValue(fromValue)
-  }
-  function onSelectTo (toValue) {
-    setToValue(toValue)
-  }
-
-  function calculate (event) {
-    event.preventDefault()
-    const inputValue = event.target[0].value
-
-    if (fromValue && toValue) {
-      const calcValue = decideCalculation(inputValue)
+  useEffect(() => {
+    if (calcValue === null) {
       setCalcValue(calcValue)
+    }
+  }, [calcValue])
+
+  const onSelectFrom = fromUnits => {
+    console.log(fromUnits)
+    if (fromUnits) {
+      setFromUnits(fromUnits)
+    }
+  }
+
+  const onSelectTo = toUnits => {
+    if (toUnits) {
+      setToUnits(toUnits)
+    }
+  }
+
+  function getItems (direction) {
+    console.log('gets here')
+    console.log(units)
+
+    if (units && units.length > 0) {
+      const item = units.map((unit, index, arr) => {
+        console.log('key', `${unit}${index}`)
+        return (
+          <Dropdown.Item
+            eventKey={unit}
+            active={direction === unit}
+            key={`${index}-${unit}`}
+          >
+            {unit}
+          </Dropdown.Item>
+        )
+      })
+
+      return item
+    }
+  }
+
+  function handleOnSubmit (event) {
+    event.preventDefault()
+    const calcValue = event.target[0].value
+    if (fromUnits && toUnits && calcValue) {
+      calculate(calcValue, fromUnits, toUnits, setCalcValue)
+      // console.log(x)
+      // if (x) {
+      //   setCalcValue(x)
+      // }
     }
   }
 
@@ -82,62 +106,21 @@ function DropdownTemplate ({ units = 'volume' }) {
           }}
         ></div>
         <Grid style={{ padding: '10px' }}>
-          <Dropdown onSelect={onSelectFrom} key={`From-${fromValue}`}>
+          <Dropdown onSelect={onSelectFrom}>
             <div>From Units</div>
             <Dropdown.Toggle variant='outline-primary' id='dropdown-basic'>
-              {fromValue ?? 'From'}
+              {fromUnits ?? 'From'}
             </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item
-                eventKey={'millimeters'}
-                active={fromValue === 'millimeters'}
-              >
-                Millimeters
-              </Dropdown.Item>
-              <Dropdown.Item
-                eventKey={'centimeters'}
-                active={fromValue === 'centimeters'}
-              >
-                Centimeters
-              </Dropdown.Item>
-              <Dropdown.Item
-                eventKey={'inches'}
-                active={fromValue === 'inches'}
-              >
-                Inches
-              </Dropdown.Item>
-              <Dropdown.Item eventKey={'feet'} active={fromValue === 'feet'}>
-                Feet
-              </Dropdown.Item>
-            </Dropdown.Menu>
+            <Dropdown.Menu>{getItems(fromUnits)}</Dropdown.Menu>
           </Dropdown>
-          <Dropdown onSelect={onSelectTo} key={`To-${toValue}`}>
+          <Dropdown onSelect={onSelectTo}>
             <div>To Units</div>
             <Dropdown.Toggle variant='outline-primary' id='dropdown-basic'>
-              {toValue ?? 'To'}
+              {toUnits ?? 'To'}
             </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item
-                eventKey={'millimeters'}
-                active={toValue === 'millimeters'}
-              >
-                Millimeters
-              </Dropdown.Item>
-              <Dropdown.Item
-                eventKey={'centimeters'}
-                active={toValue === 'centimeters'}
-              >
-                Centimeters
-              </Dropdown.Item>
-              <Dropdown.Item eventKey={'inches'} active={toValue === 'inches'}>
-                Inches
-              </Dropdown.Item>
-              <Dropdown.Item eventKey={'feet'} active={toValue === 'feet'}>
-                Feet
-              </Dropdown.Item>
-            </Dropdown.Menu>
+            <Dropdown.Menu>{getItems(toUnits)}</Dropdown.Menu>
           </Dropdown>
-          <Form onSubmit={calculate}>
+          <Form onSubmit={handleOnSubmit}>
             <Form.Label htmlFor='input'></Form.Label>
             <Form.Text id='input' muted>
               Input Value
@@ -158,7 +141,7 @@ function DropdownTemplate ({ units = 'volume' }) {
           {calcValue && (
             <React.Fragment>
               <Alert>{calcValue}</Alert>
-              <span>{toValue}</span>
+              {/* <span>{toValue}</span> */}
             </React.Fragment>
           )}
         </Grid>

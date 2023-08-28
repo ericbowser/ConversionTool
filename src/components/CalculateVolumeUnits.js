@@ -1,9 +1,9 @@
 import { Container } from 'react-bootstrap'
+
 function CalculateVolumeUnits () {
   return (
     <Container>
-      <a href='/'>Home</a>
-      <div>Volume</div>
+      {/* <DropdownTemplate units={dropDownUnitsVolume} calculate={calculate} /> */}
     </Container>
   )
 }

@@ -1,9 +1,10 @@
 import { Container } from 'react-bootstrap'
+// import DropdownTemplate from './DropdownTemplate'
 function CalculateWeightUnits () {
+  // const dropDownUnitsWeight = ['Grams', 'Kilograms', 'Ounces', 'Pounds']
   return (
     <Container>
-      <a href='/'>Home</a>
-      <div>Weight</div>
+      {/* <DropdownTemplate units={dropDownUnitsWeight} /> */}
     </Container>
   )
 }
