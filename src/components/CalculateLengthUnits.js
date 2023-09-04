@@ -37,9 +37,6 @@ function CalculateLengthUnits () {
   }
 
   const calculate = (inputValue, fromUnits, toUnits, setCalcValue) => {
-    console.log('from units', fromUnits)
-    console.log('to units', toUnits)
-
     if (inputValue && fromUnits && toUnits) {
       const calcValue = decideCalculation(inputValue, fromUnits, toUnits)
       setCalcValue(calcValue)
