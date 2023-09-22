@@ -6,6 +6,7 @@ import CalculateLengthUnits from './components/CalculateLengthUnits'
 import CalculateDistanceUnits from './components/CalculateDistanceUnits'
 import CalculateWeightUnits from './components/CalculateWeightUnits'
 import CalculateVolumeUnits from './components/CalculateVolumeUnits'
+import Capture from "./components/Capture";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: '/volume',
     element: <CalculateVolumeUnits />
+  },
+  {
+    path: '/capture',
+    element: <Capture />
   }
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'))

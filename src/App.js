@@ -33,6 +33,9 @@ function App () {
         <Nav.Item>
           <Nav.Link href='/distance'>Distance</Nav.Link>
         </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href='/capture'>Paste Data String</Nav.Link>
+        </Nav.Item>
       </Nav>
     </React.Fragment>
   )
