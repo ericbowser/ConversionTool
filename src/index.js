@@ -1,12 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App'
 import CalculateLengthUnits from './components/CalculateLengthUnits'
 import CalculateDistanceUnits from './components/CalculateDistanceUnits'
 import CalculateWeightUnits from './components/CalculateWeightUnits'
 import CalculateVolumeUnits from './components/CalculateVolumeUnits'
-import Capture from "./components/Capture";
+import Capture from './components/Capture'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -36,4 +35,8 @@ const router = createBrowserRouter([
   }
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<RouterProvider router={router}></RouterProvider>)
+root.render(
+  <RouterProvider router={router}>
+    <App />
+  </RouterProvider>
+)

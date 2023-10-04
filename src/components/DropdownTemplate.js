@@ -16,36 +16,32 @@ const Grid = styled.div`
 
 function DropdownTemplate ({ props }) {
   const { units, calculate } = props
-  const [currentUnits, setCurrentUnits] = useState([])
-  const [toUnits, setToUnits] = useState(null)
-  const [fromUnits, setFromUnits] = useState(null)
-  const [calcValue, setCalcValue] = useState(null)
+  const [currentUnits, setCurrentUnits] = useState(undefined)
+  const [toUnits, setToUnits] = useState(undefined)
+  const [fromUnits, setFromUnits] = useState(undefined)
+  const [calcValue, setCalcValue] = useState(undefined)
 
   const location = useLocation()
   console.log(location.pathname)
 
-  useEffect(() => {}, [currentUnits])
-
   useEffect(() => {
-    // if (fromUnits === null) {
-    //   setFromUnits(fromUnits)
-    // }
-  }, [fromUnits])
-
-  useEffect(() => {
-    // if (toUnits === null) {
-    //   setFromUnits(toUnits)
-    // }
-  }, [toUnits])
-
-  useEffect(() => {
-    if (calcValue === null) {
-      setCalcValue(calcValue)
+    if (!currentUnits && units !== undefined) {
+      console.log(units)
+      setCurrentUnits(units)
     }
+  }, [currentUnits])
+
+  useEffect(() => {}, [fromUnits])
+
+  useEffect(() => {}, [toUnits])
+
+  useEffect(() => {
+    // if (calcValue === null) {
+    //   setCalcValue(calcValue)
+    // }
   }, [calcValue])
 
   const onSelectFrom = fromUnits => {
-    console.log(fromUnits)
     if (fromUnits) {
       setFromUnits(fromUnits)
     }
@@ -58,9 +54,6 @@ function DropdownTemplate ({ props }) {
   }
 
   function getItems (direction) {
-    console.log('gets here')
-    console.log(units)
-
     if (units && units.length > 0) {
       const item = units.map((unit, index, arr) => {
         console.log('key', `${unit}${index}`)
@@ -83,11 +76,8 @@ function DropdownTemplate ({ props }) {
     event.preventDefault()
     const calcValue = event.target[0].value
     if (fromUnits && toUnits && calcValue) {
+      console.log('inside handle submit')
       calculate(calcValue, fromUnits, toUnits, setCalcValue)
-      // console.log(x)
-      // if (x) {
-      //   setCalcValue(x)
-      // }
     }
   }
 
@@ -100,7 +90,7 @@ function DropdownTemplate ({ props }) {
         <h3>Conversion Units</h3>
         <div
           style={{
-            backgroundColor: '#cfe2ff',
+            backgroundColor: '#ff30',
             padding: '10px',
             borderRadius: '16px'
           }}
@@ -140,7 +130,9 @@ function DropdownTemplate ({ props }) {
           </Form>
           {calcValue && (
             <React.Fragment>
-              <Alert>{calcValue}</Alert>
+              <Alert variant='danger' style={{ border: '2px outset #FFA500' }}>
+                {calcValue}
+              </Alert>
               {/* <span>{toValue}</span> */}
             </React.Fragment>
           )}
