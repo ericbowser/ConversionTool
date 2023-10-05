@@ -1,16 +1,14 @@
+import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import DropdownTemplate from './DropdownTemplate'
+
 function CalculateWeightUnits () {
   const units = ['Grams', 'Kilograms', 'Ounces', 'Pounds']
+  const [calcValue, setCalcValue] = useState(undefined)
 
-  useMemo(() => {
-    console.log('effect for calcValue')
-    if (calcValue > 0.0) {
-      setCalcValue(calcValue)
-    }
-  }, [calcValue])
+  useEffect(() => {}, [calcValue])
 
-  const calculate = (inputValue, fromUnits, toUnits, setCalcValue) => {
+  const calculate = (inputValue, fromUnits, toUnits) => {
     const calcValue = decideCalculation(inputValue, fromUnits, toUnits)
     setCalcValue(calcValue)
   }
@@ -32,7 +30,7 @@ function CalculateWeightUnits () {
 
   return (
     <Container>
-      <DropdownTemplate props={{ units, calculate }} />
+      <DropdownTemplate props={{ units, calculate, calcValue }} />
     </Container>
   )
 }

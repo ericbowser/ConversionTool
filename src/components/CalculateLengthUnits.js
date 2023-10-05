@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Container from 'react-bootstrap/Container'
 import DropdownTemplate from './DropdownTemplate'
 
 function CalculateLengthUnits () {
-  const dropDownUnitsLength = ['Millimeters', 'Centimeters', 'Inches', 'Feet']
+  const units = ['Millimeters', 'Centimeters', 'Inches', 'Feet']
+  const [calcValue, setCalcValue] = useState(undefined)
+  useEffect(() => {}, [calcValue])
 
   function decideCalculation (inputValue, fromUnits, toUnits) {
     let value
@@ -36,16 +38,14 @@ function CalculateLengthUnits () {
     }
   }
 
-  const calculate = (inputValue, fromUnits, toUnits, setCalcValue) => {
-    if (inputValue && fromUnits && toUnits) {
-      const calcValue = decideCalculation(inputValue, fromUnits, toUnits)
-      setCalcValue(calcValue)
-    }
+  const calculate = (inputValue, fromUnits, toUnits) => {
+    const calcValue = decideCalculation(inputValue, fromUnits, toUnits)
+    setCalcValue(calcValue)
   }
 
   return (
     <Container>
-      <DropdownTemplate props={{ units: dropDownUnitsLength, calculate }} />
+      <DropdownTemplate props={{ units, calculate, calcValue }} />
     </Container>
   )
 }

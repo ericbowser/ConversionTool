@@ -1,15 +1,14 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import DropdownTemplate from './DropdownTemplate'
 
 function CalculateVolumeUnits () {
-  const dropDownUnitsVolume = ['Liters', 'Gallons', 'Quarts', 'Pints', 'Cups']
+  const units = ['Liters', 'Gallons', 'Quarts', 'Pints', 'Cups']
 
-  const [calcValue, setCalcValue] = setState(0.0)
+  const [calcValue, setCalcValue] = useState(undefined);
+  useEffect(() => {}, [calcValue]);
 
-  useMemo(() => {}, [calcValue])
-
-  const calculate = (inputValue, fromUnits, toUnits, setCalValue) => {
+  const calculate = (inputValue, fromUnits, toUnits) => {
     const calcValue = decideCalculation(inputValue, fromUnits, toUnits)
     setCalcValue(calcValue)
   }
@@ -24,7 +23,7 @@ function CalculateVolumeUnits () {
 
   return (
     <Container>
-      <DropdownTemplate props={{ units: dropDownUnitsVolume, calculate }} />
+      <DropdownTemplate props={{ units, calculate, calcValue }} />
     </Container>
   )
 }

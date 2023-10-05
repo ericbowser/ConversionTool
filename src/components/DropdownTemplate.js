@@ -15,31 +15,21 @@ const Grid = styled.div`
 `
 
 function DropdownTemplate ({ props }) {
-  const { units, calculate } = props
+  const { units, calculate, calcValue } = props
   const [currentUnits, setCurrentUnits] = useState(undefined)
   const [toUnits, setToUnits] = useState(undefined)
   const [fromUnits, setFromUnits] = useState(undefined)
-  const [calcValue, setCalcValue] = useState(undefined)
 
   const location = useLocation()
   console.log(location.pathname)
 
   useEffect(() => {
-    if (!currentUnits && units !== undefined) {
-      console.log(units)
       setCurrentUnits(units)
-    }
   }, [currentUnits])
 
   useEffect(() => {}, [fromUnits])
 
   useEffect(() => {}, [toUnits])
-
-  useEffect(() => {
-    // if (calcValue === null) {
-    //   setCalcValue(calcValue)
-    // }
-  }, [calcValue])
 
   const onSelectFrom = fromUnits => {
     if (fromUnits) {
@@ -76,8 +66,7 @@ function DropdownTemplate ({ props }) {
     event.preventDefault()
     const calcValue = event.target[0].value
     if (fromUnits && toUnits && calcValue) {
-      console.log('inside handle submit')
-      calculate(calcValue, fromUnits, toUnits, setCalcValue)
+      calculate(calcValue, fromUnits, toUnits)
     }
   }
 
