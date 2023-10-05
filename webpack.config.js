@@ -1,6 +1,7 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const env_config = require('dotenv').config()
+const webpack = require('webpack')
 const path = require('path')
 
 console.log('config', env_config)
@@ -27,9 +28,9 @@ const config = {
   },
   mode: environment,
   plugins: [
-    new HtmlWebpackPlugin({ template: './dist/index.html' }),
-    new webpack.SourceMapDevToolPlugin()
-  ],
+    new HtmlWebpackPlugin({template: './dist/index.html'})
+
+  ], 
   module: {
     rules: [
       {
@@ -42,7 +43,7 @@ const config = {
         },
         exclude: /node_modules/
       }
-    ]
+    ],
   }
 }
 
