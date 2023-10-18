@@ -20,19 +20,24 @@ function CalculateLengthUnits () {
     if (fromUnits === 'Millimeters' && toUnits === 'Centimeters') {
       value = inputValue / 10
       return value
-    } else if (fromUnits === 'Centimeters' && toUnits === 'Millimeters') {
+    }
+    if (fromUnits === 'Centimeters' && toUnits === 'Millimeters') {
       value = inputValue * 10
       return value
-    } else if (fromUnits === 'Millimeters' && toUnits === 'Inches') {
-      value = inputValue * 25.4
+    }
+    if (fromUnits === 'Millimeters' && toUnits === 'Inches') {
+      value = inputValue / 25.4 // to inches from milli
       return value
-    } else if (fromUnits === 'Inches' && toUnits === 'Millimeters') {
-      value = inputValue / 25.4
+    }
+    if (fromUnits === 'Inches' && toUnits === 'Millimeters') {
+      value = inputValue * 25.4 // to milli from inches
       return value
-    } else if (fromUnits === 'Millimeters' && toUnits === 'Feet') {
+    }
+    if (fromUnits === 'Millimeters' && toUnits === 'Feet') {
       value = inputValue * 304.8
       return value
-    } else if (fromUnits === 'Feet' && toUnits === 'Millimeters') {
+    }
+    if (fromUnits === 'Feet' && toUnits === 'Millimeters') {
       value = inputValue / 304.8
       return value
     }

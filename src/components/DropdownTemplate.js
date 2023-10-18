@@ -8,10 +8,10 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import { useLocation } from 'react-router-dom'
 
 const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-gap: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  column-gap: 5%;
 `
 
 function DropdownTemplate ({ props }) {
@@ -24,7 +24,9 @@ function DropdownTemplate ({ props }) {
   console.log(location.pathname)
 
   useEffect(() => {
+/*
       setCurrentUnits(units)
+*/
   }, [currentUnits])
 
   useEffect(() => {}, [fromUnits])
@@ -72,7 +74,7 @@ function DropdownTemplate ({ props }) {
 
   return (
     <>
-      <Container style={{ padding: '25px' }}>
+      <Container>
         <div>
           <a href='/'>Home</a>
         </div>
@@ -84,26 +86,23 @@ function DropdownTemplate ({ props }) {
             borderRadius: '16px'
           }}
         ></div>
-        <Grid style={{ padding: '10px' }}>
+        <Grid>
           <Dropdown onSelect={onSelectFrom}>
-            <div>From Units</div>
-            <Dropdown.Toggle variant='outline-primary' id='dropdown-basic'>
+            <div style={{color: 'blue'}}>From Units</div>
+            <Dropdown.Toggle variant='primary' id='dropdown-basic'>
               {fromUnits ?? 'From'}
             </Dropdown.Toggle>
             <Dropdown.Menu>{getItems(fromUnits)}</Dropdown.Menu>
           </Dropdown>
           <Dropdown onSelect={onSelectTo}>
-            <div>To Units</div>
-            <Dropdown.Toggle variant='outline-primary' id='dropdown-basic'>
+            <div style={{color: 'blue'}} >To Units</div>
+            <Dropdown.Toggle variant={'primary'} id='dropdown-basic'>
               {toUnits ?? 'To'}
             </Dropdown.Toggle>
             <Dropdown.Menu>{getItems(toUnits)}</Dropdown.Menu>
           </Dropdown>
           <Form onSubmit={handleOnSubmit}>
             <Form.Label htmlFor='input'></Form.Label>
-            <Form.Text id='input' muted>
-              Input Value
-            </Form.Text>
             <Form.Control
               type='text'
               id='input'
@@ -117,19 +116,18 @@ function DropdownTemplate ({ props }) {
               Calculate
             </OutlineButton>
           </Form>
-          {calcValue && (
-            <React.Fragment>
-              <Alert variant='danger' style={{ border: '2px outset #FFA500' }}>
-                {calcValue}
-              </Alert>
-              {/* <span>{toValue}</span> */}
-            </React.Fragment>
-          )}
         </Grid>
-        <div style={{ backgroundColor: 'pink' }}></div>
+      {calcValue && (
+        <Container style={{margin: '23px'}}>
+          <div style={{ backgroundColor: 'green' }}></div>
+          <Alert variant='success' style={{ width: 'auto', textAlign: 'center' }}>
+            {calcValue}
+          </Alert>
+        </Container>
+      )}
       </Container>
       <Container style={{ textAlign: 'center', marginTop: '25%' }}>
-        <Alert variant='primary'>
+     {/*   <Alert variant={'success'}>
           <footer>
             <p>
               {' '}
@@ -137,7 +135,7 @@ function DropdownTemplate ({ props }) {
               <span style={{ color: 'teal' }}>(Eric Ryan Bowser)</span>
             </p>
           </footer>
-        </Alert>
+        </Alert>*/}
       </Container>
     </>
   )
