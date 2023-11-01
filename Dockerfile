@@ -67,4 +67,4 @@ COPY --from=build /usr/src/app//dist .//dist
 EXPOSE 34349
 
 # Run the application.
-CMD npm run serve
+CMD npm start
