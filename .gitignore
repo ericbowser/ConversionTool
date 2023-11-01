@@ -10,7 +10,6 @@
 /coverage
 
 # production
-/build
 
 # misc
 .DS_Store
@@ -25,4 +24,3 @@ yarn-error.log*
 
 .idea/
 .vscode/
-dist/

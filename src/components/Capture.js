@@ -28,29 +28,20 @@ function Capture () {
   }
 
   const ZplData = () => {
+/*
+    const pasted = document.querySelector('textarea').select();
+*/
+    console.log(pasted)
+/*
     const result = Post().then(res => {
       if (res) {
         // const encode = document.getElementById("zpl_Data")
         // encode.src = res;
         setZplData(res)
+      ve
       }
     })
-    // const text = new Text();
-    // const label = new Label();
-    // const grid = new Grid();
-    // label.content.push(text);
-    // grid.rows.push(new Size(1, SizeType.Relative));
-    // grid.rows.push(new Size(1, SizeType.Relative));
-    // grid.columns.push(new Size(1, SizeType.Relative));
-    // grid.columns.push(new Size(1, SizeType.Relative));
-    // grid.padding = new Spacing(10);
-    // text.fontFamily = new FontFamily(FontFamilyName.A);
-    // text.verticalAlignment = new Alignment(AlignmentValue.Start);
-    // text.horizontalAlignment = new Alignment(AlignmentValue.Center);
-    // label.content.push(grid);
-    // text.text = 'Hello World!';
-    // const zpl = label.generateZPL();
-    // console.log(zpl);
+*/
   }
 
   return (
@@ -58,12 +49,14 @@ function Capture () {
       <Form onSubmit={handleSubmit}>
         <FlexContainer>
           <textarea
+            id={'label'}
             rows={20}
             cols={50}
             style={{ margin: '20px' }}
-            value={zplData || ''}
           >
+{/*
             <img src={zplData || ''} alt={'image'} />
+*/}
           </textarea>
         </FlexContainer>
       </Form>
