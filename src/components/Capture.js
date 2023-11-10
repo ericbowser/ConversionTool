@@ -31,7 +31,6 @@ function Capture () {
 /*
     const pasted = document.querySelector('textarea').select();
 */
-    console.log(pasted)
 /*
     const result = Post().then(res => {
       if (res) {
