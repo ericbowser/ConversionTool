@@ -1,7 +1,6 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const env_config = require("dotenv").config();
-const webpack = require("webpack");
 const path = require("path");
 
 console.log("config", env_config);
@@ -17,17 +16,16 @@ console.log("environment", environment);
 const config = {
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, "./dist"),
+    path: path.resolve(__dirname, "./build"),
     filename: "index_bundle.js",
   },
   devServer: {
     historyApiFallback: true,
     open: true,
     port: port,
-    host: "localhost",
   },
   mode: environment,
-  plugins: [new HtmlWebpackPlugin({ template: "./dist/index.html" })],
+  plugins: [new HtmlWebpackPlugin({ template: "./public/index.html" })],
   module: {
     rules: [
       {
@@ -40,10 +38,10 @@ const config = {
         },
       },
       {
-        test: /\.(gif|png|jpe?g|svg)$/i,
+        test: /\.(png)$/i,
         loader: "file-loader",
         options: {
-          name: "./src/icons/[name].[ext]",
+          name: "./src/assets/[name].[ext]",
         },
       },
       // {

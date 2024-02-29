@@ -1,12 +1,9 @@
-﻿
-function DecodeBase64(encoded) {
-	const decoded = atob(encoded);
-	return decoded;
+﻿function DecodeBase64(encoded) {
+  return atob(encoded);
 }
 
 function EncodeBase64(toEncode) {
-	const encoded = btoa(toEncode);
-	return encoded;
+  return btoa(toEncode);
 }
 
 export { DecodeBase64, EncodeBase64 };
