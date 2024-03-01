@@ -16,18 +16,14 @@ const Grid = styled.div`
 
 function DropdownTemplate({ props }) {
   const { units, calculate, calcValue } = props;
-  const [currentUnits, setCurrentUnits] = useState(undefined);
+  const [currentUnits] = useState(undefined);
   const [toUnits, setToUnits] = useState(undefined);
   const [fromUnits, setFromUnits] = useState(undefined);
 
   const location = useLocation();
-  console.log(location.pathname);
+  console.log(location);
 
-  useEffect(() => {
-    /*
-      setCurrentUnits(units)
-*/
-  }, [currentUnits]);
+  useEffect(() => {}, [currentUnits]);
 
   useEffect(() => {}, [fromUnits]);
 
@@ -47,7 +43,7 @@ function DropdownTemplate({ props }) {
 
   function getItems(direction) {
     if (units && units.length > 0) {
-      const item = units.map((unit, index, arr) => {
+      return units.map((unit, index, arr) => {
         console.log("key", `${unit}${index}`);
         return (
           <Dropdown.Item
@@ -59,8 +55,6 @@ function DropdownTemplate({ props }) {
           </Dropdown.Item>
         );
       });
-
-      return item;
     }
   }
 

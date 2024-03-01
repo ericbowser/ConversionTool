@@ -18,6 +18,9 @@ function CalculateDistanceUnits() {
     if (fromUnits === "Kilometers" && toUnits === "Miles") {
       return inputValue / 1.609344;
     }
+    if (fromUnits === "Miles" && toUnits === "Meters") {
+      return inputValue * 0.00062137;
+    }
   }
 
   return (
