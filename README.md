@@ -1,9 +1,6 @@
-# 🚀 Conversion tool from standard units to Metric units
-
-This project has been created using **webpack-cli**, you can now run
+# 🚀 Conversion tool from standard units to Metric units and vise versa
 
 ```
 npm run build
+npm run serve
 ```
-
-to bundle your application
