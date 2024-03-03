@@ -85,39 +85,43 @@ function App() {
       >
         Common Unit Conversions
       </h2>
-      <Navbar className="shadow nav-tabs" style={{ marginTop: "15px" }}>
-        <div>
+      <Container style={{ margin: "15px" }}>
+        <div style={{ color: "blue" }}>
           <table>
             <tbody>
               <tr>
                 <th>Type</th>
-                <th>Metric</th>
-                <th>Standard (U.S. Customary)</th>
+                <th style={{ paddingLeft: "18px" }}>Metric</th>
+                <th style={{ paddingLeft: "18px" }}>
+                  Standard (U.S. Customary)
+                </th>
               </tr>
               <tr>
                 <td>Length</td>
-                <td>1 meter (m)</td>
-                <td>3.28084 feet (ft)</td>
+                <td style={{ paddingLeft: "18px" }}>1 meter (m)</td>
+                <td style={{ paddingLeft: "18px" }}>3.28084 feet (ft)</td>
               </tr>
               <tr>
                 <td>Weight</td>
-                <td>1 kilogram (kg)</td>
-                <td>2.20462 pounds (lb)</td>
+                <td style={{ paddingLeft: "18px" }}>1 kilogram (kg)</td>
+                <td style={{ paddingLeft: "18px" }}>2.20462 pounds (lb)</td>
               </tr>
               <tr>
                 <td>Volume</td>
-                <td>1 liter (L)</td>
-                <td>0.264172 gallons (gal)</td>
+                <td style={{ paddingLeft: "18px" }}>1 liter (L)</td>
+                <td style={{ paddingLeft: "18px" }}>0.264172 gallons (gal)</td>
               </tr>
               <tr>
                 <td>Temperature</td>
-                <td>0°C (degrees Celsius)</td>
-                <td>32°F (degrees Fahrenheit)</td>
+                <td style={{ paddingLeft: "18px" }}>0°C (degrees Celsius)</td>
+                <td style={{ paddingLeft: "18px" }}>
+                  32°F (degrees Fahrenheit)
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
-      </Navbar>
+      </Container>
       <Grid>
         <GridCol1Row1>
           <h6>Length</h6>
