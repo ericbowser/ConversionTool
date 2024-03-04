@@ -4,16 +4,13 @@ import Form from "react-bootstrap/Form";
 import OutlineButton from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Dropdown from "react-bootstrap/Dropdown";
-import { useLocation } from "react-router-dom";
+import { DropdownItem } from "react-bootstrap";
 
 function DropdownTemplate({ props }) {
   const { units, calculate, calcValue } = props;
   const [currentUnits] = useState(undefined);
   const [toUnits, setToUnits] = useState(undefined);
   const [fromUnits, setFromUnits] = useState(undefined);
-
-  const location = useLocation();
-  console.log(window.width);
 
   useEffect(() => {}, [currentUnits]);
 
@@ -38,13 +35,13 @@ function DropdownTemplate({ props }) {
       return units.map((unit, index, arr) => {
         console.log("key", `${unit}${index}`);
         return (
-          <Dropdown.Item
+          <DropdownItem
             eventKey={unit}
             active={direction === unit}
             key={`${index}-${unit}`}
           >
             {unit}
-          </Dropdown.Item>
+          </DropdownItem>
         );
       });
     }
@@ -59,24 +56,20 @@ function DropdownTemplate({ props }) {
   }
 
   return (
-    <Container style={{ marginBottom: "2em" }}>
-      <Dropdown onSelect={onSelectFrom} style={{ padding: "15px" }}>
-        <div style={{ color: "blue" }}>
-          <span style={{ padding: "5px" }}>From Units</span>
-          <Dropdown.Toggle variant="primary" id="dropdown-basic">
-            {fromUnits ?? "From"}
-          </Dropdown.Toggle>
-          <Dropdown.Menu>{getItems(fromUnits)}</Dropdown.Menu>
-        </div>
+    <Container style={{ padding: "25px" }}>
+      <Dropdown onSelect={onSelectFrom}>
+        <span style={{ paddingRight: "25px" }}>From Units</span>
+        <Dropdown.Toggle variant="outline-success" id="dropdown-basic">
+          {fromUnits ?? "From"}
+        </Dropdown.Toggle>
+        <Dropdown.Menu>{getItems(fromUnits)}</Dropdown.Menu>
       </Dropdown>
-      <Dropdown onSelect={onSelectTo} style={{ padding: "15px" }}>
-        <div style={{ color: "blue" }}>
-          <span style={{ padding: "5px" }}>To Units</span>
-          <Dropdown.Toggle variant={"primary"} id="dropdown-basic">
-            {toUnits ?? "To"}
-          </Dropdown.Toggle>
-          <Dropdown.Menu>{getItems(toUnits)}</Dropdown.Menu>
-        </div>
+      <Dropdown onSelect={onSelectTo}>
+        <span style={{ paddingRight: "45px" }}>To Units</span>
+        <Dropdown.Toggle variant={"outline-success"} id="dropdown-basic">
+          {toUnits ?? "To"}
+        </Dropdown.Toggle>
+        <Dropdown.Menu>{getItems(toUnits)}</Dropdown.Menu>
       </Dropdown>
       <Form onSubmit={handleOnSubmit}>
         <Form.Label htmlFor="input"></Form.Label>
@@ -85,25 +78,22 @@ function DropdownTemplate({ props }) {
           id="input"
           aria-describedby="metricToStandard"
         ></Form.Control>
-        <OutlineButton
-          variant="outline-dark"
-          style={{ marginTop: "15px" }}
-          type="submit"
-        >
-          Calculate
-        </OutlineButton>
-      </Form>
-      {calcValue && (
-        <Container style={{ margin: "23px" }}>
-          <div style={{ backgroundColor: "green" }}></div>
-          <Alert
-            variant="success"
-            style={{ width: "auto", textAlign: "center" }}
+        <span>
+          <OutlineButton
+            variant="outline-danger"
+            style={{ marginTop: "15px" }}
+            type="submit"
           >
-            {calcValue}
-          </Alert>
-        </Container>
-      )}
+            Calculate
+          </OutlineButton>
+          {calcValue && (
+            <span style={{ margin: "10px", color: "darkred" }}>
+              {calcValue}
+            </span>
+          )}
+          ;
+        </span>
+      </Form>
     </Container>
   );
 }

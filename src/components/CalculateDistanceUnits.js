@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import Container from "react-bootstrap/Container";
-import DropdownTemplate from "./DropdownTemplate";
+
+const DropdownTemplate = lazy(() => import("./DropdownTemplate"));
 
 function CalculateDistanceUnits() {
   const units = ["Miles", "Kilometers", "Meters", "Feet", "Yard"];
@@ -25,7 +26,9 @@ function CalculateDistanceUnits() {
 
   return (
     <Container>
-      <DropdownTemplate props={{ units, calculate, calcValue }} />
+      <Suspense>
+        <DropdownTemplate props={{ units, calculate, calcValue }} />
+      </Suspense>
     </Container>
   );
 }

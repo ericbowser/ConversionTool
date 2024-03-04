@@ -2,23 +2,26 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const env_config = require("dotenv").config();
 const path = require("path");
-
-console.log("config", env_config);
+const { loader } = require("mini-css-extract-plugin");
 
 const environment = process.env.NODE_ENV || "production";
 console.log("node process env", process.env.NODE_ENV);
 
 const port = process.env.PORT || 3000;
-
-console.log("port", port);
-console.log("environment", environment);
+console.log("port: ", port);
 
 const config = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "./build"),
-    filename: "index_bundle.js",
+    filename: "[name]_bundle.js",
   },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
+  devtool: "source-map",
   devServer: {
     historyApiFallback: true,
     open: true,
@@ -38,20 +41,15 @@ const config = {
         },
       },
       {
-        test: /\.(png)$/i,
-        loader: "file-loader",
-        options: {
-          name: "./src/assets/[name].[ext]",
-        },
+        test: /\.css$/i,
+        use: [loader, "css-loader"],
       },
-      // {
-      //   loader: "image-webpack-loader",
-      //   options: {
-      //     bypassOnDebug: true, // webpack@1.x
-      //     disable: true, // webpack@2.x and newer
-      //   },
-      // },
     ],
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
   },
 };
 
