@@ -4,7 +4,7 @@ const Grid = styled.div`
   color: white;
   display: grid;
   grid-gap: 25px;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 33% 33%;
   grid-template-rows: 50% 50%;
   word-wrap: break-word;
   @media only screen and (max-width: 650px) {

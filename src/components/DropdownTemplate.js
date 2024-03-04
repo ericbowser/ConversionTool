@@ -33,7 +33,7 @@ function DropdownTemplate({ props }) {
   function getItems(direction) {
     if (units && units.length > 0) {
       return units.map((unit, index, arr) => {
-        console.log("key", `${unit}${index}`);
+        console.log("key", `${unit}-${index}`);
         return (
           <DropdownItem
             eventKey={unit}
@@ -74,9 +74,12 @@ function DropdownTemplate({ props }) {
       <Form onSubmit={handleOnSubmit}>
         <Form.Label htmlFor="input"></Form.Label>
         <Form.Control
-          type="text"
+          style={{ width: "130px" }}
+          inputMode={"numeric"}
+          type="number"
           id="input"
           aria-describedby="metricToStandard"
+          placeholder={"Input Units"}
         ></Form.Control>
         <span>
           <OutlineButton
@@ -87,11 +90,10 @@ function DropdownTemplate({ props }) {
             Calculate
           </OutlineButton>
           {calcValue && (
-            <span style={{ margin: "10px", color: "darkred" }}>
+            <span style={{ marginLeft: "33px", color: "greenyellow" }}>
               {calcValue}
             </span>
           )}
-          ;
         </span>
       </Form>
     </Container>
