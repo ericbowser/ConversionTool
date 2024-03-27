@@ -59,14 +59,14 @@ function DropdownTemplate({ props }) {
     <Container style={{ padding: "25px" }}>
       <Dropdown onSelect={onSelectFrom}>
         <span style={{ paddingRight: "25px" }}>From Units</span>
-        <Dropdown.Toggle variant="outline-success" id="dropdown-basic">
+        <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
           {fromUnits ?? "From"}
         </Dropdown.Toggle>
         <Dropdown.Menu>{getItems(fromUnits)}</Dropdown.Menu>
       </Dropdown>
       <Dropdown onSelect={onSelectTo}>
         <span style={{ paddingRight: "45px" }}>To Units</span>
-        <Dropdown.Toggle variant={"outline-success"} id="dropdown-basic">
+        <Dropdown.Toggle variant={"outline-light"} id="dropdown-basic">
           {toUnits ?? "To"}
         </Dropdown.Toggle>
         <Dropdown.Menu>{getItems(toUnits)}</Dropdown.Menu>
@@ -83,7 +83,7 @@ function DropdownTemplate({ props }) {
         ></Form.Control>
         <span>
           <OutlineButton
-            variant="outline-danger"
+            variant="outline-light"
             style={{ marginTop: "15px" }}
             type="submit"
           >
